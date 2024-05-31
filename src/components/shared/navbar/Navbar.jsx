@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import navLogo from "./../../../assets/navbar-logo.png";
+import { BsCartDash } from "react-icons/bs";
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);
@@ -153,19 +154,28 @@ const Navbar = () => {
             </MotionConfig>
           )}
         </AnimatePresence>
-        {/* Additional link for larger devices */}
+        {/* link for larger devices */}
         <div className="hidden lg:block md:block">
           <div className="flex justify-between items-center">
             {/* nav logo section  */}
-            <div className="w-10 flex justify-center items-center gap-1 ml-10">
+            <div className="w-10 flex justify-center items-center gap-1 ml-10 cursor-pointer">
               <img src={navLogo} alt="" />
               <span className="text-xl font-semibold">Studyify</span>
             </div>
+
             {/* nav links section  */}
-            <ul className="flex gap-10">
-              <li>Home</li>
-              <li>About</li>
-              <li>Contacts</li>
+            <ul className="flex gap-10 items-center text-black">
+              <li className="mr-12 hover:border-b-[1px] hover:border-slate-700 border-b-[1px] border-transparent cursor-pointer duration-500">
+                Teach on Studyify
+              </li>
+              <li>
+                <BsCartDash className="text-2xl cursor-pointer" />
+              </li>
+              <li>
+                <button className="border-[1px] border-slate-700 py-[6px] px-8 text-lg hover:bg-slate-700 hover:text-white duration-300">
+                  Login
+                </button>
+              </li>
             </ul>
           </div>
         </div>
