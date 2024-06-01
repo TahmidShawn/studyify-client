@@ -36,7 +36,7 @@ const Banner = () => {
             education is the key to personal and professional growth, and we are
             here to guide you on your journey to success.
           </p>
-          <button className="btn btn-primary">
+          <button className="btn bg-slate-800 rounded-none text-white border-none">
             Start your instructor journey
           </button>
         </div>
