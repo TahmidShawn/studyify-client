@@ -2,14 +2,15 @@ import bannerImage from "./../../assets/banner-img.png";
 import bannerBg from "./../../assets/banner-frame-1.png";
 import BannerFrameTopLeft from "./BannerFrameTopLeft";
 import BannerFrameBottomLeft from "./BannerFrameBottomLeft";
+import BannerFrameTopRight from "./BannerFrameTopRight";
 
 const Banner = () => {
   return (
-    <div className="mt-10">
+    <div className="mt-14">
       <div className="flex justify-between items-center flex-col lg:flex-row-reverse">
         {/* main img */}
         <div
-          className="relative bg-contain bg-bottom bg-no-repeat"
+          className="relative bg-contain bg-bottom bg-no-repeat mr-[6px] lg:mr-12"
           style={{ backgroundImage: `url(${bannerBg})` }}
         >
           <img src={bannerImage} className="ml-5" />
@@ -18,18 +19,22 @@ const Banner = () => {
 
           <BannerFrameTopLeft />
 
-          {/* img bottom left */}
+          {/* img bottom left part */}
           <BannerFrameBottomLeft />
+
+          {/* img top right part */}
+          <BannerFrameTopRight />
         </div>
-        <div>
+
+        {/* left side info section */}
+        <div className="w-ful lg:w-auto mx-auto lg:mx-0 px-2 lg:px-0 text-center lg:text-left mt-6 lg:mt-0">
           <h1 className="text-4xl font-bold">
             Unlock Your Potential <br /> with Studyify
           </h1>
-          <p className="py-6">
+          <p className="py-6 max-w-2xl text-justify">
             Welcome to Studyify, where learning knows no bounds. We believe that
-            <br />
             education is the key to personal and professional growth, and we are
-            here to <br /> guide you on your journey to success.
+            here to guide you on your journey to success.
           </p>
           <button className="btn btn-primary">
             Start your instructor journey
