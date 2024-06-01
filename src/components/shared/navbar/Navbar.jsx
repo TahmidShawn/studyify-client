@@ -11,7 +11,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 inset-x-0 py-5 md:py-3 bg-white border-b-[1px]">
+    <header className="sticky top-0 z-50 inset-x-0 py-5 md:py-3 bg-white border-b-[1px]">
       <nav className="">
         <motion.button
           initial="hide"
