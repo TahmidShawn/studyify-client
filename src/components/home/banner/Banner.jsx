@@ -1,8 +1,9 @@
-import bannerImage from "./../../assets/banner-img.png";
-import bannerBg from "./../../assets/banner-frame-1.png";
+import bannerImage from "./../../../assets/banner-img.png";
+import bannerBg from "./../../../assets/banner-frame-1.png";
 import BannerFrameTopLeft from "./BannerFrameTopLeft";
 import BannerFrameBottomLeft from "./BannerFrameBottomLeft";
 import BannerFrameTopRight from "./BannerFrameTopRight";
+import { motion } from "framer-motion";
 
 const Banner = () => {
   return (
@@ -13,7 +14,13 @@ const Banner = () => {
           className="relative bg-contain bg-bottom bg-no-repeat mr-[6px] lg:mr-12"
           style={{ backgroundImage: `url(${bannerBg})` }}
         >
-          <img src={bannerImage} className="ml-5" />
+          <motion.img
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            src={bannerImage}
+            className="ml-5"
+          />
 
           {/* img top left part  */}
 

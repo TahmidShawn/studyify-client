@@ -168,9 +168,9 @@ const Navbar = () => {
               <li className="mr-12 hover:border-b-[1px] hover:border-slate-700 border-b-[1px] border-transparent cursor-pointer duration-500">
                 Teach on Studyify
               </li>
-              <li>
+              <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <BsCartDash className="text-2xl cursor-pointer" />
-              </li>
+              </motion.li>
               <li>
                 <button className="border-[1px] border-slate-700 py-[6px] px-8 text-lg hover:bg-slate-700 hover:text-white duration-300">
                   Login
