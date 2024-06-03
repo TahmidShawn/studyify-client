@@ -60,9 +60,9 @@ const Testimonials = () => {
 
   return (
     <div className="bg-[#F2F2F2] my-12 pt-12 pb-6">
-      <div className="max-w-screen-xl mx-auto">
+      <div className="max-w-screen-xl mx-auto md:mx-6 lg:mx-auto">
         <div>
-          <h1 className="text-4xl mb-8 font-bold mx-6 lg:mx-0">
+          <h1 className="text-3xl mb-8 font-bold ml-10 md:mx-0">
             Client Testimonials
           </h1>
         </div>
