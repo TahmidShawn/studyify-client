@@ -3,6 +3,7 @@ import Categories from "../../components/home/categories/Categories";
 import Courses from "../../components/home/courses/Courses";
 import Instructors from "../../components/home/instructors/Instructors";
 import StatsBanner from "../../components/home/statsBanner/StatsBanner";
+import Testimonials from "../../components/home/testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         <Courses />
         <Instructors />
       </div>
+      <Testimonials />
     </div>
   );
 };
