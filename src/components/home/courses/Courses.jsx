@@ -7,9 +7,9 @@ const Courses = () => {
       <SectionTitle categoryName="Top Courses" categoryLink="/top-courses" />
 
       {/* contain section  */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 mt-8">
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8">
         {/* card 1 */}
-        <div className="card bg-base-100 shadow-xl p-4 border-[1px]">
+        <div className="card bg-base-100 shadow-md p-4 border-[1px] border-[#E2E8F0]">
           <figure className="">
             <img
               src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -26,7 +26,7 @@ const Courses = () => {
         </div>
 
         {/* card 2 */}
-        <div className="card bg-base-100 shadow-xl p-4 border-[1px]">
+        <div className="card bg-base-100 shadow-md p-4 border-[1px] border-[#E2E8F0]">
           <figure className="">
             <img
               src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -43,7 +43,7 @@ const Courses = () => {
         </div>
 
         {/* card 3 */}
-        <div className="card  bg-base-100 shadow-xl p-4 border-[1px]">
+        <div className="card  bg-base-100 shadow-md p-4 border-[1px] border-[#E2E8F0]">
           <figure className="">
             <img
               src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -60,7 +60,7 @@ const Courses = () => {
         </div>
 
         {/* card 4 */}
-        <div className="card  bg-base-100 shadow-xl p-4 border-[1px]">
+        <div className="card  bg-base-100 shadow-md p-4 border-[1px] border-[#E2E8F0]">
           <figure className="">
             <img
               src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"

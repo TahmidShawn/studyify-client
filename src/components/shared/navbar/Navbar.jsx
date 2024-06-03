@@ -11,8 +11,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className="max-w-screen-xl lg:mx-auto sticky top-0 z-50 inset-x-0 py-5 md:py-3 bg-white border-b-[1px]">
-      <nav className="">
+    <header className="bg-white sticky top-0 z-50 inset-x-0 py-5 md:py-3 border-b-[1px]">
+      <nav className="max-w-screen-xl lg:mx-auto md:mx-4 ">
         <motion.button
           initial="hide"
           animate={mobileNav ? "show" : "hide"}
