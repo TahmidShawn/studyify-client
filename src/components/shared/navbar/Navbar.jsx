@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import navLogo from "./../../../assets/navbar-logo.png";
 import { BsCartDash } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);
@@ -172,9 +173,11 @@ const Navbar = () => {
                 <BsCartDash className="text-2xl cursor-pointer" />
               </motion.li>
               <li>
-                <button className="border-[1px] border-slate-700 py-[6px] px-8 text-lg hover:bg-slate-700 hover:text-white duration-300">
-                  Login
-                </button>
+                <Link to="/register">
+                  <button className="border-[1px] border-slate-700 py-[6px] px-8 text-lg hover:bg-slate-700 hover:text-white duration-300">
+                    Login
+                  </button>
+                </Link>
               </li>
             </ul>
           </div>
