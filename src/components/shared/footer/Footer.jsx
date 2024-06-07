@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="bg-gray-800 mt-20 text-white">
-      <div className="footer max-w-screen-xl mx-4 lg:mx-auto py-10">
+      <div className="footer max-w-screen-xl mx-0 lg:mx-auto px-4 py-10">
         <aside>
           <svg
             width="50"

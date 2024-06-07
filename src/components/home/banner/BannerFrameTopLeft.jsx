@@ -1,6 +1,6 @@
 const BannerFrameTopLeft = () => {
   return (
-    <section className="absolute top-24 -left-10 md:-left-20 bg-white border-[1px] shadow-md border-slate-200 w-max p-3 rounded-lg">
+    <section className="hidden md:inline-block md:absolute top-24 -left-1 md:-left-20 bg-white border-[1px] shadow-md border-slate-200 w-max p-3 rounded-lg">
       <div className=" flex -space-x-3 justify-center">
         <div className="tooltip hover:z-40" data-tip="name1">
           <img

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const SectionTitle = ({ categoryName, categoryLink }) => {
   return (
     <div className="flex justify-between items-center mx-4 lg:mx-0">
-      <h1 className="text-2xl font-bold">{categoryName}</h1>
+      <h1 className="text-xl md:text-2xl font-bold">{categoryName}</h1>
 
       <Link
         to={categoryLink}
