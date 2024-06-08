@@ -5,7 +5,7 @@ import Instructors from "../../components/home/instructors/Instructors";
 import PromotionalBanner from "../../components/home/promotionalBanner/PromotionalBanner";
 import StatsBanner from "../../components/home/statsBanner/StatsBanner";
 import Testimonials from "../../components/home/testimonials/Testimonials";
-import Footer from "../../components/shared/footer/Footer";
+
 
 const Home = () => {
   return (
@@ -23,7 +23,7 @@ const Home = () => {
       <div className="max-w-screen-xl mx-4 lg:mx-auto">
         <PromotionalBanner />
       </div>
-      <Footer />
+      
     </div>
   );
 };

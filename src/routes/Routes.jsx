@@ -3,7 +3,7 @@ import Root from "../layout/root/Root";
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
-import Courses from "../pages/courses/Courses";
+import AllCourses from "../pages/allCourses/AllCourses";
 
 const Routes = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const Routes = createBrowserRouter([
       },
       {
         path: "/courses",
-        element: <Courses />,
+        element: <AllCourses />,
       },
     ],
   },
