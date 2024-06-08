@@ -1,34 +1,42 @@
 import { Link } from "react-router-dom";
-import registerImg from "./../../assets/register.png";
 import { FcGoogle } from "react-icons/fc";
 const Register = () => {
   return (
-    <div className="mt-0 md:mt-16">
-      <div className=" text-gray-800 bg-white max-w-screen-xl flex items-center mx-auto md:h-screen p-4">
-        <div className="grid md:grid-cols-3 items-center rounded-xl overflow-hidden">
-          <div className="order-2 md:order-1">
-            <img src={registerImg} alt="" />
-          </div>
-          <form className="md:col-span-2 w-full py-6 px-6 sm:px-16 lg:ml-8 order-1 md:order-2">
-            <div className="mb-6">
-              <h3 className="text-4xl font-bold">Create an account</h3>
-            </div>
-            <div className="space-y-6">
+    <div className=" text-[#333]">
+      <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
+        <div className="grid md:grid-cols-2 items-center gap-4 max-w-7xl w-full">
+          <div className="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
+            <form className="space-y-6">
+              <div className="mb-10">
+                <h3 className="text-3xl font-extrabold">Sign Up</h3>
+              </div>
+
+              <button
+                type="button"
+                className="w-full px-4 py-3 flex items-center justify-center rounded-md text-white text-base tracking-wider font-semibold border-none outline-none bg-[#333]"
+              >
+                <FcGoogle className="mr-3 text-xl " />
+                Continue with Google
+              </button>
+              <div className="my-7 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+                <p className="mx-4 text-center">Or</p>
+              </div>
+              {/* user name */}
               <div>
-                <label className="text-sm mb-2 block">Name</label>
+                <label className="text-sm mb-2 block">User name</label>
                 <div className="relative flex items-center">
                   <input
-                    name="name"
+                    name="username"
                     type="text"
                     required
-                    className="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
-                    placeholder="Enter name"
+                    className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
+                    placeholder="Enter user name"
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="#bbb"
                     stroke="#bbb"
-                    className="w-4 h-4 absolute right-4"
+                    className="w-[18px] h-[18px] absolute right-4"
                     viewBox="0 0 24 24"
                   >
                     <circle
@@ -44,50 +52,38 @@ const Register = () => {
                   </svg>
                 </div>
               </div>
+              {/* user email */}
               <div>
-                <label className="text-sm mb-2 block">Email Id</label>
+                <label className="text-sm mb-2 block">User Email</label>
                 <div className="relative flex items-center">
                   <input
                     name="email"
                     type="email"
                     required
-                    className="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
-                    placeholder="Enter email"
+                    className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
+                    placeholder="Enter user email"
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="#bbb"
                     stroke="#bbb"
-                    className="w-4 h-4 absolute right-4"
-                    viewBox="0 0 682.667 682.667"
+                    className="w-[18px] h-[18px] absolute right-4"
+                    viewBox="0 0 24 24"
                   >
-                    <defs>
-                      <clipPath id="a" clipPathUnits="userSpaceOnUse">
-                        <path
-                          d="M0 512h512V0H0Z"
-                          data-original="#000000"
-                        ></path>
-                      </clipPath>
-                    </defs>
-                    <g
-                      clipPath="url(#a)"
-                      transform="matrix(1.33 0 0 -1.33 0 682.667)"
-                    >
-                      <path
-                        fill="none"
-                        strokeMiterlimit="10"
-                        strokeWidth="40"
-                        d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
-                        data-original="#000000"
-                      ></path>
-                      <path
-                        d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
-                        data-original="#000000"
-                      ></path>
-                    </g>
+                    <circle
+                      cx="10"
+                      cy="7"
+                      r="6"
+                      data-original="#000000"
+                    ></circle>
+                    <path
+                      d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                      data-original="#000000"
+                    ></path>
                   </svg>
                 </div>
               </div>
+              {/* user password  */}
               <div>
                 <label className="text-sm mb-2 block">Password</label>
                 <div className="relative flex items-center">
@@ -95,14 +91,14 @@ const Register = () => {
                     name="password"
                     type="password"
                     required
-                    className="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
+                    className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
                     placeholder="Enter password"
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="#bbb"
                     stroke="#bbb"
-                    className="w-4 h-4 absolute right-4 cursor-pointer"
+                    className="w-[18px] h-[18px] absolute right-4 cursor-pointer"
                     viewBox="0 0 128 128"
                   >
                     <path
@@ -112,52 +108,51 @@ const Register = () => {
                   </svg>
                 </div>
               </div>
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-3 block text-sm">
-                  I accept the{" "}
-                  <a
-                    href="javascript:void(0);"
-                    className="text-blue-600 font-semibold hover:underline ml-1"
-                  >
-                    Terms and Conditions
-                  </a>
-                </label>
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center">
+                  <input
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 shrink-0 border-gray-300 rounded"
+                  />
+                  <label htmlFor="remember-me" className="ml-3 block text-sm">
+                    I accept the{" "}
+                    <a
+                      href="javascript:void(0);"
+                      className="text-blue-500 font-semibold hover:underline ml-1"
+                    >
+                      Terms and Conditions
+                    </a>
+                  </label>
+                </div>
               </div>
-            </div>
-            <div className="!mt-10">
-              <button
-                type="button"
-                className="w-full py-3 px-4 text-sm font-semibold rounded text-white bg-gray-700 hover:bg-gray-800 focus:outline-none"
-              >
-                Create an account
-              </button>
-            </div>
-            <p className="text-sm mt-6 text-center">
-              Already have an account?
-              <Link
-                to="/login"
-                className="text-blue-600 font-semibold hover:underline ml-1"
-              >
-                Login here
-              </Link>
-            </p>
-            <div className="my-7 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
-              <p className="mx-4 text-center">Or</p>
-            </div>
-            <button
-              type="button"
-              className="w-full px-4 py-3 flex items-center justify-center rounded-md text-white text-base tracking-wider font-semibold border-none outline-none bg-gray-700"
-            >
-              <FcGoogle className="mr-3 text-2xl"/>
-              Continue with Google
-            </button>
-          </form>
+              <div className="!mt-7">
+                <button
+                  type="button"
+                  className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-[#333] hover:bg-[#333] focus:outline-none"
+                >
+                  Create account
+                </button>
+              </div>
+              <p className="text-sm !mt-10 text-center">
+                Already have an account
+                <Link
+                  to="/login"
+                  className="text-blue-600 hover:underline ml-1 whitespace-nowrap"
+                >
+                  Login here
+                </Link>
+              </p>
+            </form>
+          </div>
+          <div className="lg:h-[400px] md:h-[300px] max-md:mt-10">
+            <img
+              src="https://readymadeui.com/login-image.webp"
+              className="w-full h-full object-cover"
+              alt="Dining Experience"
+            />
+          </div>
         </div>
       </div>
     </div>
