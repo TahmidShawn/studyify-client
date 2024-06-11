@@ -4,6 +4,9 @@ import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import AllCourses from "../pages/allCourses/AllCourses";
+import Dashboard from "../layout/dashboard/Dashboard";
+import Profile from "../pages/dashboard/profile/Profile";
+import MyCourses from "../pages/dashboard/myCourses/MyCourses";
 
 const Routes = createBrowserRouter([
   {
@@ -25,6 +28,20 @@ const Routes = createBrowserRouter([
       {
         path: "/courses",
         element: <AllCourses />,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "my-courses",
+        element: <MyCourses />,
       },
     ],
   },

@@ -1,17 +1,88 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAuth from "../../hooks/useAuth";
+
 const Register = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const axiosPublic = useAxiosPublic();
+  const { createUser, googleLogin, updateUserProfile } = useAuth();
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    const userName = data.userName;
+    const userEmail = data.userEmail;
+    const userPassword = data.userPassword;
+
+    if (userPassword.length < 6) {
+      return toast.error("Password must be at least 6 characters");
+    } else if (!/[A-Z]/.test(userPassword)) {
+      return toast.error("Password must have at least one uppercase letter");
+    } else if (!/[!@#$%^&*()_+{}[\]:;<>,.?~\-|/"'`]/.test(userPassword)) {
+      return toast.error(
+        "Password must contain at least one special character"
+      );
+    }
+
+    // create user
+    createUser(userEmail, userPassword)
+      .then((result) => {
+        console.log(result);
+        updateUserProfile(userName).then(() => {
+          // create user entry in the database
+          const userData = {
+            userName,
+            userEmail,
+          };
+          axiosPublic.post("api/users", userData).then((res) => {
+            console.log(res);
+            if (res.data.userEmail) {
+              console.log("user added to the database");
+              toast.success("done");
+              reset();
+            }
+          });
+        });
+
+        // navigate(location?.state ? location.state : '/')
+      })
+      .catch((error) => {
+        if (error.code === "auth/email-already-in-use") {
+          toast.error(
+            "Email already in use. Please use a different email or log in."
+          );
+        } else {
+          toast.error(`${error.message}`);
+        }
+      });
+  };
+  //   login via google
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then(() => {
+        toast.success("Google login successfully done");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        toast.error(`${error.message}`);
+      });
+  };
   return (
     <div className=" text-[#333]">
       <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
         <div className="grid md:grid-cols-2 items-center gap-4 max-w-7xl w-full">
-          <div className="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
-            <form className="space-y-6">
+          <div className="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] w-full max-md:mx-auto">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="mb-10">
                 <h3 className="text-3xl font-extrabold">Sign Up</h3>
               </div>
 
               <button
+                onClick={handleGoogleLogin}
                 type="button"
                 className="w-full px-4 py-3 flex items-center justify-center rounded-md text-white text-base tracking-wider font-semibold border-none outline-none bg-[#333]"
               >
@@ -26,7 +97,8 @@ const Register = () => {
                 <label className="text-sm mb-2 block">User name</label>
                 <div className="relative flex items-center">
                   <input
-                    name="username"
+                    {...register("userName", { required: true })}
+                    // name="username"
                     type="text"
                     required
                     className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
@@ -57,7 +129,8 @@ const Register = () => {
                 <label className="text-sm mb-2 block">User Email</label>
                 <div className="relative flex items-center">
                   <input
-                    name="email"
+                    {...register("userEmail", { required: true })}
+                    // name="email"
                     type="email"
                     required
                     className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
@@ -88,7 +161,8 @@ const Register = () => {
                 <label className="text-sm mb-2 block">Password</label>
                 <div className="relative flex items-center">
                   <input
-                    name="password"
+                    {...register("userPassword", { required: true })}
+                    // name="password"
                     type="password"
                     required
                     className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
@@ -108,7 +182,7 @@ const Register = () => {
                   </svg>
                 </div>
               </div>
-              <div className="flex items-center justify-between gap-2">
+              {/* <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center">
                   <input
                     id="remember-me"
@@ -126,31 +200,30 @@ const Register = () => {
                     </a>
                   </label>
                 </div>
-              </div>
+              </div> */}
               <div className="!mt-7">
-                <button
-                  type="button"
+                <input
+                  type="submit"
+                  value="Create Account"
                   className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-[#333] hover:bg-[#333] focus:outline-none"
-                >
-                  Create account
-                </button>
+                />
               </div>
-              <p className="text-sm !mt-10 text-center">
-                Already have an account
-                <Link
-                  to="/login"
-                  className="text-blue-600 hover:underline ml-1 whitespace-nowrap"
-                >
-                  Login here
-                </Link>
-              </p>
             </form>
+            <p className="text-sm mt-7 text-center">
+              Already have an account
+              <Link
+                to="/login"
+                className="text-blue-600 hover:underline ml-1 whitespace-nowrap"
+              >
+                Login here
+              </Link>
+            </p>
           </div>
           <div className="lg:h-[400px] md:h-[300px] max-md:mt-10">
             <img
               src="https://readymadeui.com/login-image.webp"
               className="w-full h-full object-cover"
-              alt="Dining Experience"
+              alt="Sign up image"
             />
           </div>
         </div>

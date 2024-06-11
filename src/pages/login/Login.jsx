@@ -1,12 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { signIn } = useAuth;
+  const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const onSubmit = async (data) => {
+    const email = data.userEmail;
+    const password = data.userPassword;
+    // create user
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Successfully Logged In");
+        navigate(location?.state ? location.state : "/");
+        reset();
+      })
+      .catch((err) => {
+        if (err.message === "IncorrectEmail") {
+          toast.error("Email does not match");
+        } else if (err.message === "IncorrectPassword") {
+          toast.error("Password does not match");
+        } else {
+          toast.error("Email and Password does not match");
+        }
+      });
+  };
   return (
     <div className=" text-[#333]">
       <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
         <div className="grid md:grid-cols-2 items-center gap-4 max-w-7xl w-full">
           <div className="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="mb-10">
                 <h3 className="text-3xl font-extrabold">Sign in</h3>
                 <p className="text-sm mt-4">
@@ -18,11 +46,12 @@ const Login = () => {
                 <label className="text-sm mb-2 block">User name</label>
                 <div className="relative flex items-center">
                   <input
-                    name="username"
-                    type="text"
+                    name="userEmail"
+                    {...register("userEmail", { required: true })}
+                    type="email"
                     required
                     className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
-                    placeholder="Enter user name"
+                    placeholder="Enter user email"
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +77,7 @@ const Login = () => {
                 <label className="text-sm mb-2 block">Password</label>
                 <div className="relative flex items-center">
                   <input
-                    name="password"
+                    {...register("userPassword", { required: true })}
                     type="password"
                     required
                     className="w-full text-sm border border-gray-300 px-4 py-3 rounded-md outline-[#333]"
@@ -68,7 +97,7 @@ const Login = () => {
                   </svg>
                 </div>
               </div>
-              <div className="flex items-center justify-between gap-2">
+              {/* <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center">
                   <input
                     id="remember-me"
@@ -88,14 +117,13 @@ const Login = () => {
                     Forgot your password?
                   </a>
                 </div>
-              </div>
+              </div> */}
               <div className="!mt-10">
-                <button
-                  type="button"
+                <input
+                  type="submit"
+                  value="Log in"
                   className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-[#333] hover:bg-black focus:outline-none"
-                >
-                  Log in
-                </button>
+                />
               </div>
               <p className="text-sm !mt-10 text-center">
                 Do not have an account
@@ -112,7 +140,7 @@ const Login = () => {
             <img
               src="https://readymadeui.com/login-image.webp"
               className="w-full h-full object-cover"
-              alt="Dining Experience"
+              alt="Login page"
             />
           </div>
         </div>

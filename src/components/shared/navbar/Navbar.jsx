@@ -3,60 +3,106 @@ import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import navLogo from "./../../../assets/navbar-logo.png";
 import { BsCartDash } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [mobileNav, setMobileNav] = useState(false);
+  const { user, logOut } = useAuth();
 
   const toggleMobileNav = () => {
     setMobileNav(!mobileNav);
   };
 
+  //   logout functionality
+  const handleLogOut = () => {
+    logOut()
+      .then((result) => {
+        console.log(result);
+        toast.success("Logout Successfully Done!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <header className="bg-white sticky top-0 z-50 inset-x-0 py-5 md:py-3 border-b-[1px]">
+    <header className="bg-white sticky top-0 z-50 inset-x-0 py-3 md:py-3 border-b-[1px]">
       <nav className="max-w-screen-xl lg:mx-auto md:mx-4 ">
-        <motion.button
-          initial="hide"
-          animate={mobileNav ? "show" : "hide"}
-          onClick={toggleMobileNav}
-          className="flex flex-col space-y-1 relative z-10 md:hidden ml-6"
-          whileHover={{ scale: 1.4 }}
-        >
-          <motion.span
+        <div className="flex justify-between items-center">
+          <motion.button
+            initial="hide"
+            animate={mobileNav ? "show" : "hide"}
+            onClick={toggleMobileNav}
+            className="flex flex-col space-y-1 relative z-10 md:hidden ml-6"
+            whileHover={{ scale: 1.4 }}
+          >
+            <motion.span
+              variants={{
+                hide: {
+                  rotate: 0,
+                },
+                show: {
+                  rotate: 45,
+                  y: 5,
+                },
+              }}
+              className="w-6 bg-black h-px block"
+            ></motion.span>
+            <motion.span
+              variants={{
+                hide: {
+                  opacity: 1,
+                },
+                show: {
+                  opacity: 0,
+                },
+              }}
+              className="w-6 bg-black h-px block"
+            ></motion.span>
+            <motion.span
+              variants={{
+                hide: {
+                  rotate: 0,
+                },
+                show: {
+                  rotate: -45,
+                  y: -5,
+                },
+              }}
+              className="w-6 bg-black h-px block"
+            ></motion.span>
+          </motion.button>
+          <motion.div
             variants={{
               hide: {
-                rotate: 0,
-              },
-              show: {
-                rotate: 45,
-                y: 5,
-              },
-            }}
-            className="w-6 bg-black h-px block"
-          ></motion.span>
-          <motion.span
-            variants={{
-              hide: {
-                opacity: 1,
-              },
-              show: {
+                y: "25%",
                 opacity: 0,
               },
-            }}
-            className="w-6 bg-black h-px block"
-          ></motion.span>
-          <motion.span
-            variants={{
-              hide: {
-                rotate: 0,
-              },
               show: {
-                rotate: -45,
-                y: -5,
+                y: "0%",
+                opacity: 1,
               },
             }}
-            className="w-6 bg-black h-px block"
-          ></motion.span>
-        </motion.button>
+            className="mr-4 inline-block md:hidden"
+          >
+            {user ? (
+              <button
+                onClick={handleLogOut}
+                className="border-[1px] border-slate-700 py-[6px] px-8 text-lg hover:bg-slate-700 hover:text-white duration-300"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link to="/login">
+                <button className="border-[1px] border-slate-700 py-[6px] px-8 text-lg hover:bg-slate-700 hover:text-white duration-300">
+                  Login
+                </button>
+              </Link>
+            )}
+          </motion.div>
+        </div>
+
         <AnimatePresence>
           {mobileNav && (
             <MotionConfig
@@ -155,29 +201,46 @@ const Navbar = () => {
             </MotionConfig>
           )}
         </AnimatePresence>
+
         {/* link for larger devices */}
         <div className="hidden lg:block md:block">
           <div className="flex justify-between items-center">
             {/* nav logo section  */}
-            <div className="w-10 flex justify-center items-center gap-1 ml-10 cursor-pointer">
+            <Link
+              to="/"
+              className="w-10 flex justify-center items-center gap-1 ml-10 cursor-pointer"
+            >
               <img src={navLogo} alt="" />
               <span className="text-xl font-semibold">Studyify</span>
-            </div>
+            </Link>
 
             {/* nav links section  */}
             <ul className="flex gap-10 items-center text-black">
-              <li className="mr-12 hover:border-b-[1px] hover:border-slate-700 border-b-[1px] border-transparent cursor-pointer duration-500">
-                Teach on Studyify
-              </li>
+              <Link to="dashboard">
+                <li className="mr-12 hover:border-b-[1px] hover:border-slate-700 border-b-[1px] border-transparent cursor-pointer duration-500">
+                  Teach on Studyify
+                </li>
+              </Link>
+
               <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <BsCartDash className="text-2xl cursor-pointer" />
               </motion.li>
+              {/* login or logout btn  */}
               <li>
-                <Link to="/register">
-                  <button className="border-[1px] border-slate-700 py-[6px] px-8 text-lg hover:bg-slate-700 hover:text-white duration-300">
-                    Login
+                {user ? (
+                  <button
+                    onClick={handleLogOut}
+                    className="border-[1px] border-slate-700 py-[6px] px-8 text-lg hover:bg-slate-700 hover:text-white duration-300"
+                  >
+                    Logout
                   </button>
-                </Link>
+                ) : (
+                  <Link to="/login">
+                    <button className="border-[1px] border-slate-700 py-[6px] px-8 text-lg hover:bg-slate-700 hover:text-white duration-300">
+                      Login
+                    </button>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
