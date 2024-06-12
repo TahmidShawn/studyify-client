@@ -1,6 +1,6 @@
 import { CgProfile } from "react-icons/cg";
 import { IoHomeOutline } from "react-icons/io5";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -39,19 +39,25 @@ const Dashboard = () => {
               </button>
             </Link>
 
-            <Link to="profile">
+            <NavLink
+              to="profile"
+              className={({ isActive }) => (isActive ? "bg-slate-200" : "")}
+            >
               <button className="btn bg-transparent border-0 hover:bg-gray-900 hover:text-white shadow-none w-full rounded-none border-b-[1px] flex items-center justify-start">
                 <CgProfile className="text-xl" />
                 <span className="text-lg">Profile</span>
               </button>
-            </Link>
+            </NavLink>
 
-            <Link to="my-courses">
+            <NavLink
+              to="my-courses"
+              className={({ isActive }) => (isActive ? "bg-slate-200" : "")}
+            >
               <button className="btn bg-transparent border-0 hover:bg-gray-900 hover:text-white shadow-none w-full rounded-none border-b-[1px] flex items-center justify-start">
                 <CgProfile className="text-xl" />
                 <span className="text-lg">My Courses</span>
               </button>
-            </Link>
+            </NavLink>
           </ul>
         </div>
       </div>

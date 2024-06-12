@@ -7,6 +7,7 @@ import AllCourses from "../pages/allCourses/AllCourses";
 import Dashboard from "../layout/dashboard/Dashboard";
 import Profile from "../pages/dashboard/profile/Profile";
 import MyCourses from "../pages/dashboard/myCourses/MyCourses";
+import CourseInfo from "../pages/courseInfo/CourseInfo";
 
 const Routes = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const Routes = createBrowserRouter([
       {
         path: "/courses",
         element: <AllCourses />,
+      },
+      {
+        path: "/course-info",
+        element: <CourseInfo />,
       },
     ],
   },
