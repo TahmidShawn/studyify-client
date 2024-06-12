@@ -62,8 +62,8 @@ const Testimonials = () => {
     <div className="bg-[#edf6ff] my-12 pt-12 pb-6">
       <div className="max-w-screen-xl mx-auto md:mx-6 lg:mx-auto">
         <div>
-          <h1 className="text-3xl mb-8 font-bold ml-10 md:mx-0">
-            Client Testimonials
+          <h1 className="text-2xl mb-8 font-bold ml-10 md:mx-0">
+            What Our Customer Say About Us
           </h1>
         </div>
         <Swiper
