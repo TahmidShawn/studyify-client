@@ -31,16 +31,25 @@ const TutorForm = () => {
   };
 
   return (
-    <div>
-        <h2 className="text-4xl text-center font-semibold mt-4">Teach on Studyify</h2>
-        <p className="text-center mt-1 text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit..</p>
-      <div className="p-4 mt-4">
-        <div className="mx-4 lg:mx-auto max-w-screen-xl  border-[1px] p-8 bg-gray-100" >
+    <div className="max-w-screen-xl mx-auto my-8">
+      <h2 className="text-4xl text-center font-semibold mt-4">
+        Teach on Studyify
+      </h2>
+     
+      <div className="p-4 mt-4 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="hidden md:inline-block h-screen min-h-full col-span-1">
+          <img
+            src="https://readymadeui.com/image-3.webp"
+            className="w-full h-full "
+            alt="image"
+          />
+        </div>
+        <div className=" lg:mx-auto max-w-screen-xl  border-[1px] border-gray-300 p-8 col-span-2 w-full">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className=" grid sm:grid-cols-2 gap-6"
+            className="px-8 grid sm:grid-cols-2 gap-6"
           >
-            <div>
+            <div className="col-span-full">
               <label className="font-semibold text-sm">Your Name</label>
               <input
                 {...register("tutorName", { required: true })}
@@ -49,7 +58,7 @@ const TutorForm = () => {
                 className="w-full rounded py-2.5 px-4 mt-2 border-[1px] text-sm outline-[#007bff]"
               />
             </div>
-            <div>
+            <div className="col-span-full">
               <label className="font-semibold text-sm">Email</label>
               <input
                 {...register("tutorEmail", { required: true })}
@@ -58,12 +67,12 @@ const TutorForm = () => {
                 className="w-full rounded py-2.5 px-4 border-[1px] mt-2 text-sm outline-[#007bff]"
               />
             </div>
-            <div className="">
+            <div className="col-span-full">
               <p className="font-semibold text-sm mb-2">Upload Image</p>
               <input
                 {...register("tutorImage", { required: true })}
                 type="file"
-                className="w-full bg-white font-medium text-base file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 border-[1px] file:bg-[#c7c9cc] file:text-white rounded"
+                className="w-full bg-white font-medium text-base file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 border-[1px] rounded"
               />
             </div>
             <div className="col-span-full">
@@ -78,7 +87,7 @@ const TutorForm = () => {
             <input
               type="submit"
               value="Submit Data"
-              className="text-white bg-[#007bff] font-semibold rounded text-sm px-6 py-3 w-max"
+              className="text-white bg-[#434344] font-semibold rounded text-sm px-6 py-3 w-max"
             />
           </form>
         </div>
