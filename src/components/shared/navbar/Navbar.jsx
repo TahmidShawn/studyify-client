@@ -217,7 +217,12 @@ const Navbar = () => {
             {/* nav links section  */}
             <ul className="flex gap-10 items-center text-black">
               <Link to="dashboard">
-                <li className="mr-12 hover:border-b-[1px] hover:border-slate-700 border-b-[1px] border-transparent cursor-pointer duration-500">
+                <li className="hover:border-b-[1px] hover:border-slate-700 border-b-[1px] border-transparent cursor-pointer duration-500">
+                  Dashboard
+                </li>
+              </Link>
+              <Link to="/teach-on-studyify">
+                <li className=" hover:border-b-[1px] hover:border-slate-700 border-b-[1px] border-transparent cursor-pointer duration-500">
                   Teach on Studyify
                 </li>
               </Link>

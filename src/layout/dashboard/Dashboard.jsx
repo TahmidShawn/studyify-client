@@ -58,6 +58,26 @@ const Dashboard = () => {
                 <span className="text-lg">My Courses</span>
               </button>
             </NavLink>
+
+            <NavLink
+              to="my-uploaded-courses"
+              className={({ isActive }) => (isActive ? "bg-slate-200" : "")}
+            >
+              <button className="btn bg-transparent border-0 hover:bg-gray-900 hover:text-white shadow-none w-full rounded-none border-b-[1px] flex items-center justify-start">
+                <CgProfile className="text-xl" />
+                <span className="text-lg">Published Courses</span>
+              </button>
+            </NavLink>
+
+            <NavLink
+              to="create-course"
+              className={({ isActive }) => (isActive ? "bg-slate-200" : "")}
+            >
+              <button className="btn bg-transparent border-0 hover:bg-gray-900 hover:text-white shadow-none w-full rounded-none border-b-[1px] flex items-center justify-start">
+                <CgProfile className="text-xl" />
+                <span className="text-lg">Create a Course</span>
+              </button>
+            </NavLink>
           </ul>
         </div>
       </div>

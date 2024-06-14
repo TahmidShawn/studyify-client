@@ -8,6 +8,9 @@ import Dashboard from "../layout/dashboard/Dashboard";
 import Profile from "../pages/dashboard/profile/Profile";
 import MyCourses from "../pages/dashboard/myCourses/MyCourses";
 import CourseInfo from "../pages/courseInfo/CourseInfo";
+import MyUploadedCourses from "../pages/dashboard/myUploadedCourses/MyUploadedCourses";
+import CreateCourse from "../pages/dashboard/createCourse/CreateCourse";
+import TutorForm from "../pages/tutorForm/TutorForm";
 
 const Routes = createBrowserRouter([
   {
@@ -34,6 +37,10 @@ const Routes = createBrowserRouter([
         path: "/courses/:id",
         element: <CourseInfo />,
       },
+      {
+        path: "/teach-on-studyify",
+        element: <TutorForm />,
+      },
     ],
   },
   {
@@ -47,6 +54,14 @@ const Routes = createBrowserRouter([
       {
         path: "my-courses",
         element: <MyCourses />,
+      },
+      {
+        path: "my-uploaded-courses",
+        element: <MyUploadedCourses />,
+      },
+      {
+        path: "create-course",
+        element: <CreateCourse />,
       },
     ],
   },
