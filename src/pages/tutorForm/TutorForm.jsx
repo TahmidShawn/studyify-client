@@ -15,33 +15,41 @@ const TutorForm = () => {
     const formData = new FormData();
     formData.append("key", image_hosting_key);
     formData.append("image", file);
-    // send img to imgBB
+
     try {
-      const res = await axiosPublic?.post(img_hosting_api, formData, {
+      // Check if the email already exists
+      const emailCheckResponse = await axiosPublic.get(
+        `api/tutors/email/${data.tutorEmail}`
+      );
+      if (emailCheckResponse.data.exists) {
+        toast.error("This email is already associated with a tutor.");
+        return;
+      }
+
+      // Upload the image to imgbb
+      const res = await axiosPublic.post(img_hosting_api, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       const imageUrl = res.data.data.url;
       const role = "teacher";
-      //   added imageUrl and role
+
+      // Add imageUrl and role to data
       data.tutorImage = imageUrl;
       data.role = role;
 
       console.log(data);
-      try {
-        axiosPublic.post("api/tutors", data).then((res) => {
-          console.log(res);
-          if (res.data.tutorEmail) {
-            toast.success("Congratulations");
-            reset();
-          }
-        });
-      } catch (error) {
-        console.log(error);
+
+      // Submit the tutor data to the server
+      const response = await axiosPublic.post("api/tutors", data);
+      if (response.data.tutorEmail) {
+        toast.success("Congratulations");
+        reset();
       }
     } catch (error) {
-      toast.error("Something went wrong.Please try with a different photo");
+      console.error("Error:", error);
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
