@@ -2,12 +2,17 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import tutorImg from "./../../assets/tutor.jpg";
 import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const TutorForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
   const image_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY;
   const img_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+  const { user, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const onSubmit = async (data) => {
     const file = data.tutorImage[0];
@@ -17,7 +22,7 @@ const TutorForm = () => {
     formData.append("image", file);
 
     try {
-      // Check if the email already exists
+      //   Check if the email already exists
       const emailCheckResponse = await axiosPublic.get(
         `api/tutors/email/${data.tutorEmail}`
       );
@@ -38,15 +43,19 @@ const TutorForm = () => {
       // Add imageUrl and role to data
       data.tutorImage = imageUrl;
       data.role = role;
+      const name = data?.tutorName;
 
       console.log(data);
-
-      // Submit the tutor data to the server
-      const response = await axiosPublic.post("api/tutors", data);
-      if (response.data.tutorEmail) {
-        toast.success("Congratulations");
-        reset();
-      }
+      updateUserProfile(name, imageUrl).then(async () => {
+        // create user entry in the database
+        const response = await axiosPublic.post("api/tutors", data);
+        if (response.data.tutorEmail) {
+          toast.success("Congratulations");
+          navigate(location?.state ? location.state : "/");
+          reset();
+        }
+      });
+      // post data
     } catch (error) {
       console.error("Error:", error);
       toast.error("Something went wrong. Please try again.");
@@ -74,6 +83,7 @@ const TutorForm = () => {
                 {...register("tutorName", { required: true })}
                 type="text"
                 placeholder="Enter Name"
+                defaultValue={user?.displayName}
                 className="w-full rounded py-2.5 px-4 mt-2 border-[1px] text-sm outline-[#007bff]"
               />
             </div>
@@ -81,6 +91,8 @@ const TutorForm = () => {
               <label className="font-semibold text-sm">Email</label>
               <input
                 {...register("tutorEmail", { required: true })}
+                defaultValue={user?.email}
+                readOnly
                 type="email"
                 placeholder="Email"
                 className="w-full rounded py-2.5 px-4 border-[1px] mt-2 text-sm outline-[#007bff]"

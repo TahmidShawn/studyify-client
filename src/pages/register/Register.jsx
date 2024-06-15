@@ -32,13 +32,15 @@ const Register = () => {
     createUser(userEmail, userPassword)
       .then((result) => {
         console.log(result);
-        updateUserProfile(userName).then(() => {
+        const photoUrl = null;
+        updateUserProfile(userName, photoUrl).then(() => {
           // create user entry in the database
           const userData = {
             userName,
             userEmail,
+            photoUrl,
           };
-          axiosPublic.post("api/users", userData).then((res) => {
+          axiosPublic?.post("api/users", userData).then((res) => {
             console.log(res);
             if (res.data.userEmail) {
               console.log("user added to the database");
@@ -48,7 +50,7 @@ const Register = () => {
           });
         });
 
-        // navigate(location?.state ? location.state : '/')
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
@@ -63,9 +65,26 @@ const Register = () => {
   //   login via google
   const handleGoogleLogin = () => {
     googleLogin()
-      .then(() => {
-        toast.success("Google login successfully done");
-        navigate(location?.state ? location.state : "/");
+      .then((result) => {
+        const user = result.user;
+        const userName = user.displayName;
+        const userEmail = user.email;
+        const photoUrl = user.photoURL;
+
+        // create user entry in the database
+        const userData = {
+          userName,
+          userEmail,
+          photoUrl,
+        };
+
+        axiosPublic?.post("api/users", userData).then((res) => {
+          console.log(res);
+          if (res.data.userEmail) {
+            toast.success("Google login successfully done");
+            navigate(location?.state ? location.state : "/");
+          }
+        });
       })
       .catch((error) => {
         toast.error(`${error.message}`);

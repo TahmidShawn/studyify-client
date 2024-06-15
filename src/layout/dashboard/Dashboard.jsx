@@ -1,8 +1,12 @@
 import { CgProfile } from "react-icons/cg";
 import { IoHomeOutline } from "react-icons/io5";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Dashboard = () => {
+  const { user } = useAuth();
+  const photoUrl = user?.photoURL || "aa";
+  const name = user?.displayName || "user name";
   return (
     <div className="max-w-screen-xl mx-auto">
       <div className="drawer lg:drawer-open">
@@ -26,11 +30,12 @@ const Dashboard = () => {
           <ul className="menu p-0 w-80 min-h-full bg-[#F8FAFC] text-base-content">
             {/* Sidebar content here */}
 
-            <div className="avatar mb-3 mx-auto">
+            <div className="avatar mb-3 mx-auto mt-4">
               <div className="w-24 rounded-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={user?.photoURL} />
               </div>
             </div>
+            <h1 className="text-center text-xl font-bold mb-6">{name} </h1>
 
             <Link to="/">
               <button className="btn bg-transparent border-0 hover:bg-gray-900 hover:text-white shadow-none w-full rounded-none border-b-[1px] flex items-center justify-start">
