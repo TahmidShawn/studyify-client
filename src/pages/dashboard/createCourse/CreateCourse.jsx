@@ -1,4 +1,7 @@
+import usePreventScroll from "../../../hooks/usePreventScroll";
+
 const CreateCourse = () => {
+  const inputRef = usePreventScroll();
   return (
     <div className="p-4">
       <div className="mx-auto max-w-6xl border-[1px] p-8">
@@ -29,45 +32,19 @@ const CreateCourse = () => {
               className="w-full rounded px-4 border-[1px] mt-2 text-sm pt-3 outline-[#007bff]"
             ></textarea>
           </div>
-          <div>
-            <label className="font-semibold text-sm">Image URL</label>
+          <div className="">
+            <p className="font-semibold text-sm mb-2">Course Thumbnail</p>
             <input
-              type="text"
-              placeholder="Image URL"
-              className="w-full rounded py-2.5 px-4 mt-2 border-[1px] text-sm outline-[#007bff]"
+              type="file"
+              className="w-full bg-white font-medium text-base file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 border-[1px] rounded mt-1"
             />
           </div>
           <div>
-            <label className="font-semibold text-sm">Author Image URL</label>
-            <input
-              type="text"
-              placeholder="Author Image URL"
-              className="w-full rounded py-2.5 px-4 mt-2 border-[1px] text-sm outline-[#007bff]"
-            />
-          </div>
-          <div>
-            <label className="font-semibold text-sm">Author Name</label>
-            <input
-              type="text"
-              placeholder="Author Name"
-              className="w-full rounded py-2.5 px-4 mt-2 border-[1px] text-sm outline-[#007bff]"
-            />
-          </div>
-          <div>
-            <label className="font-semibold text-sm">Ratings</label>
+            <label className="font-semibold text-sm">Course Duration</label>
             <input
               type="number"
-              step="0.1"
-              max="5"
-              placeholder="Ratings"
-              className="w-full rounded py-2.5 px-4 mt-2 border-[1px] text-sm outline-[#007bff]"
-            />
-          </div>
-          <div>
-            <label className="font-semibold text-sm">Duration</label>
-            <input
-              type="text"
               placeholder="Duration"
+              ref={inputRef}
               className="w-full rounded py-2.5 px-4 mt-2 border-[1px] text-sm outline-[#007bff]"
             />
           </div>
@@ -75,17 +52,24 @@ const CreateCourse = () => {
             <label className="font-semibold text-sm">Price</label>
             <input
               type="number"
+              ref={inputRef}
               placeholder="Price"
               className="w-full rounded py-2.5 px-4 mt-2 border-[1px] text-sm outline-[#007bff]"
             />
           </div>
           <div>
-            <label className="font-semibold text-sm">Category</label>
-            <input
-              type="text"
-              placeholder="Category"
+            <label htmlFor="categories" className="font-semibold text-sm">
+              Select a category
+            </label>
+            <select
+              id="categories"
               className="w-full rounded py-2.5 px-4 mt-2 border-[1px] text-sm outline-[#007bff]"
-            />
+            >
+              <option value="PG">Programming</option>
+              <option value="GD">Graphics Design</option>
+              <option value="AD">Academic</option>
+              <option value="MK">Marketing</option>
+            </select>
           </div>
           <button
             type="button"

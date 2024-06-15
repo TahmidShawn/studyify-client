@@ -17,7 +17,7 @@ const Dashboard = () => {
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
           >
-            Open drawer
+            Open Sidebar
           </label>
           <Outlet></Outlet>
         </div>
@@ -32,7 +32,7 @@ const Dashboard = () => {
 
             <div className="avatar mb-3 mx-auto mt-4">
               <div className="w-24 rounded-full">
-                <img src={user?.photoURL} />
+                <img src={photoUrl} />
               </div>
             </div>
             <h1 className="text-center text-xl font-bold mb-6">{name} </h1>
